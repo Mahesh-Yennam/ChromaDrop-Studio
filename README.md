@@ -1,6 +1,9 @@
 # ChromaDrop Studio 🎨✨
 > An interactive 3D digital art and color laboratory built with pure Vanilla JavaScript, CSS3 neo-glassmorphism, and native Web Audio synthesis.
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_ChromaDrop-6366f1?style=for-the-badge&logo=googlechrome&logoColor=white)](https://mahesh-yennam.github.io/ChromaDrop-Studio/)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-24292e?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Mahesh-Yennam/ChromaDrop-Studio)
+
 ![ChromaDrop Studio Preview](preview.png)
 
 ---

@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://chromadrop.studio/sitemap.xml
+Sitemap: https://mahesh-yennam.github.io/ChromaDrop-Studio/sitemap.xml
