@@ -1,0 +1,5 @@
+# Robots.txt for ChromaDrop Studio
+User-agent: *
+Allow: /
+
+Sitemap: https://chromadrop.studio/sitemap.xml

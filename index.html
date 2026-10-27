@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#090c12">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>ChromaDrop Studio — 3D Liquid Gem & Coloring Artboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Particle & Confetti Canvas -->
+  <canvas id="fxCanvas"></canvas>
+
+  <!-- Floating 3D Droplet Cursor -->
+  <div class="fluid-cursor" id="fluidCursor"></div>
+
+  <!-- Header Navigation -->
+  <header>
+    <div class="brand" id="brandBtn">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <h1>ChromaDrop <span>Studio</span></h1>
+        <p>Interactive 3D Color & Sound Artboard</p>
+      </div>
+    </div>
+
+    <!-- Mode Selector: Free Paint vs Paint-by-Numbers -->
+    <div class="mode-pills">
+      <button class="mode-btn active" id="modePbnBtn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Paint by Numbers
+      </button>
+      <button class="mode-btn" id="modeFreeBtn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        Free Studio
+      </button>
+    </div>
+
+    <!-- Action Toolbar -->
+    <div class="header-actions">
+      <!-- Toggle Numbers Visibility -->
+      <button class="action-btn active" id="toggleNumbersBtn" title="Toggle Numbers (H)">
+        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span class="tooltip">Toggle Numbers (H)</span>
+      </button>
+      <button class="action-btn" id="undoBtn" disabled title="Undo (Ctrl+Z)">
+        <svg viewBox="0 0 24 24"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/></svg>
+        <span class="tooltip">Undo (Ctrl+Z)</span>
+      </button>
+      <button class="action-btn" id="redoBtn" disabled title="Redo (Ctrl+Y)">
+        <svg viewBox="0 0 24 24"><path d="M21 7v6h-6"/><path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3L21 13"/></svg>
+        <span class="tooltip">Redo (Ctrl+Y)</span>
+      </button>
+      <button class="action-btn" id="shuffleBtn" title="Randomize Colors">
+        <svg viewBox="0 0 24 24"><path d="M16 3h5v5"/><path d="M4 20L21 3"/><path d="M21 16v5h-5"/><path d="M15 15l6 6"/><path d="M4 4l5 5"/></svg>
+        <span class="tooltip">Randomize (R)</span>
+      </button>
+      <button class="action-btn" id="clearBtn" title="Clear Canvas">
+        <svg viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        <span class="tooltip">Clear (C)</span>
+      </button>
+      <button class="action-btn" id="exportBtn" title="Save Artwork as PNG">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span class="tooltip">Export PNG</span>
+      </button>
+      <button class="action-btn" id="soundToggleBtn" title="Toggle Sound">
+        <svg id="soundIcon" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        <span class="tooltip">Audio FX</span>
+      </button>
+      <button class="action-btn" id="helpBtn" title="Keyboard Shortcuts">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span class="tooltip">Help (?)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Paint-by-Numbers Guide Banner -->
+  <div id="pbnBanner" class="active">
+    <div class="pbn-left">
+      <span class="pbn-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+        Guide
+      </span>
+      <span class="pbn-instruction" id="pbnInstruction">
+        Pick a numbered color below (<strong>1–6</strong>), then click the pulsing matching shapes!
+      </span>
+    </div>
+    <div class="pbn-right">
+      <span class="pbn-stat">Progress: <span id="pbnProgress">0 / 0</span></span>
+      <button class="mode-btn" id="resetPbnBtn" style="background: rgba(255,255,255,0.08); padding: 4px 14px; font-size: 0.78rem;">
+        Restart Artboard
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Canvas Stage -->
+  <main>
+    <div class="stage-wrapper">
+      <!-- Themed Artboard Selector -->
+      <div class="template-bar" id="templateBar">
+        <button class="template-chip active" data-artboard="galaxy">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="6"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="1.5"/><path d="M3 12c3-4 15-4 18 0"/></svg>
+          Cosmic Galaxy
+        </button>
+        <button class="template-chip" data-artboard="geode">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="6 3 18 3 22 9 12 22 2 9 6 3"/><line x1="2" y1="9" x2="22" y2="9"/></svg>
+          Crystal Geode
+        </button>
+        <button class="template-chip" data-artboard="bloom">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c2 4 4 6 4 10a4 4 0 0 1-8 0c0-4 2-6 4-10z"/><circle cx="12" cy="14" r="2"/></svg>
+          Lotus Bloom
+        </button>
+      </div>
+
+      <!-- Active Interactive Artboard Layout -->
+      <div class="canvas-layout" id="canvasLayout">
+        <!-- Rendered dynamically by script.js -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Bottom Interactive Dock & Palette -->
+  <div class="dock-container">
+    <div class="dock-card">
+      <div class="dock-controls-row">
+        <!-- Theme Dropdown -->
+        <div class="theme-selector-wrapper">
+          <label class="theme-selector-label">Palette</label>
+          <select class="theme-select" id="themeSelect">
+            <option value="cyber">Cyber Neon</option>
+            <option value="pastel">Pastel Sunset</option>
+            <option value="oasis">Emerald Oasis</option>
+            <option value="pop">Vibrant Pop</option>
+          </select>
+        </div>
+
+        <div class="palette-divider hide-mobile"></div>
+
+        <!-- Tools: Custom Color, Eyedropper, Continuous Mode -->
+        <div class="dock-tools">
+          <!-- Native Color Picker -->
+          <div class="color-picker-wrapper" title="Pick Custom Color">
+            <input type="color" id="customColorPicker" value="#6366f1">
+          </div>
+
+          <!-- Eyedropper Button -->
+          <button class="tool-btn" id="eyedropperBtn" title="Eyedropper: Sample from canvas (I)">
+            <svg viewBox="0 0 24 24"><path d="M14 2l4 4L7 17H3v-4L14 2z"/><line x1="14" y1="2" x2="18" y2="6"/></svg>
+          </button>
+
+          <!-- Continuous Paint Mode Toggle -->
+          <button class="tool-btn" id="continuousBtn" title="Continuous Paint Mode (Space)">
+            <svg viewBox="0 0 24 24"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="palette-divider hide-mobile"></div>
+
+      <!-- Palette Swatches with Number Keys -->
+      <div class="swatches-strip" id="swatchesStrip">
+        <!-- Injected via script.js -->
+      </div>
+    </div>
+
+    <!-- Status Pill -->
+    <div class="state-info" id="stateInfo">
+      <span class="state-badge">
+        <span class="state-dot" id="statusDot"></span>
+        <span id="statusText">Select a numbered color (1–6) or click any shape</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Keyboard Shortcuts Modal -->
+  <div class="modal-overlay" id="helpModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Keyboard & Gesture Shortcuts</h3>
+        <button class="close-btn" id="closeHelpBtn">&times;</button>
+      </div>
+      <div class="shortcut-list">
+        <div class="shortcut-row"><span>Select Color Swatches</span> <span class="key-badge">1 — 6</span></div>
+        <div class="shortcut-row"><span>Toggle Numbers Display</span> <span class="key-badge">H</span></div>
+        <div class="shortcut-row"><span>Undo Action</span> <span class="key-badge">Ctrl + Z</span></div>
+        <div class="shortcut-row"><span>Redo Action</span> <span class="key-badge">Ctrl + Y</span></div>
+        <div class="shortcut-row"><span>Clear All Shapes</span> <span class="key-badge">C</span></div>
+        <div class="shortcut-row"><span>Randomize Colors</span> <span class="key-badge">R</span></div>
+        <div class="shortcut-row"><span>Eyedropper Tool</span> <span class="key-badge">I</span></div>
+        <div class="shortcut-row"><span>Deselect Color / Cursor</span> <span class="key-badge">Esc</span></div>
+        <div class="shortcut-row"><span>Toggle Continuous Mode</span> <span class="key-badge">Space</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Celebration Toast -->
+  <div class="celebration-toast" id="celebrationToast">
+    ✨ Masterpiece Complete! Outstanding Job!
+  </div>
+
+  <!-- External JavaScript Engine -->
+  <script src="script.js"></script>
+</body>
+</html>
