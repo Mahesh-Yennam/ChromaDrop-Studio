@@ -1,20 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFQ8M0VSFN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-RFQ8M0VSFN');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="theme-color" content="#090c12">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>ChromaDrop Studio — 3D Liquid Gem & Coloring Artboard</title>
+  <title>ChromaDrop Studio — 3D Liquid Gem & Coloring Artboard — Gamility Explorer</title>
+  <meta name="description" content="ChromaDrop Studio • Interactive 3D digital art and color studio featuring liquid gem artboards, guided paint-by-numbers, freeform creative studio, procedural audio synthesis, and high-resolution PNG export.">
+  <meta name="author" content="Gamility">
+  <link rel="canonical" href="https://mahesh-yennam.github.io/ChromaDrop-Studio/">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mahesh-yennam.github.io/ChromaDrop-Studio/">
+  <meta property="og:title" content="ChromaDrop Studio — 3D Liquid Gem & Coloring Artboard — Gamility Explorer">
+  <meta property="og:description" content="Interactive 3D digital art and color studio featuring liquid gem artboards, guided paint-by-numbers, and procedural Web Audio synthesis.">
+  <meta property="og:image" content="https://mahesh-yennam.github.io/ChromaDrop-Studio/preview.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ChromaDrop Studio — 3D Liquid Gem & Coloring Artboard — Gamility Explorer">
+  <meta name="twitter:description" content="Interactive 3D digital art and color studio featuring liquid gem artboards, guided paint-by-numbers, and procedural Web Audio synthesis.">
+  <meta name="twitter:image" content="https://mahesh-yennam.github.io/ChromaDrop-Studio/preview.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="manifest" href="site.webmanifest">
   <link rel="stylesheet" href="style.css">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ChromaDrop Studio: 3D Artboard & Synthesizer",
+    "url": "https://mahesh-yennam.github.io/ChromaDrop-Studio/",
+    "description": "Interactive 3D digital art and color studio featuring liquid gem artboards, guided paint-by-numbers, freeform creative studio, procedural audio synthesis, and high-resolution PNG export.",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript",
+    "isAccessibleForFree": true
+  }
+  </script>
 </head>
 <body>
+
+  <!-- =========================================================================
+       TOP GAMILITY RETURN RIBBON
+       ========================================================================= -->
+  <header class="top-nav-ribbon" role="banner">
+    <div class="ribbon-container">
+      <div class="ribbon-left">
+        <a href="https://mahesh-yennam.github.io/Gamility/" class="ribbon-brand" title="Gamility Home" aria-label="Gamility Home">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+            </svg>
+          </div>
+          <span class="brand-text">Gami<span class="brand-highlight">lity</span> <small class="brand-sub">Explorer</small></span>
+        </a>
+      </div>
+      <div class="ribbon-right">
+        <a href="https://mahesh-yennam.github.io/Gamility/explorer.html" class="ribbon-back-btn" title="Back to Explorer Hub">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Back to Explorer Hub</span>
+        </a>
+      </div>
+    </div>
+  </header>
 
   <!-- Background Particle & Confetti Canvas -->
   <canvas id="fxCanvas"></canvas>
@@ -23,7 +92,7 @@
   <div class="fluid-cursor" id="fluidCursor"></div>
 
   <!-- Header Navigation -->
-  <header>
+  <header class="app-header">
     <div class="brand" id="brandBtn">
       <div class="brand-icon">
         <svg viewBox="0 0 24 24">

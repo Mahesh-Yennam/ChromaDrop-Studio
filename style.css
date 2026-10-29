@@ -61,8 +61,141 @@ body::before {
   z-index: 998;
 }
 
+/* ==========================================================================
+   Gamility Explorer Return Ribbon
+   ========================================================================== */
+.top-nav-ribbon {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: rgba(9, 12, 18, 0.94);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--card-border);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.ribbon-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ribbon-left {
+  display: flex;
+  align-items: center;
+}
+
+.ribbon-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  color: #ffffff;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.ribbon-brand:hover {
+  transform: translateY(-1px);
+}
+
+.ribbon-brand .brand-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: transparent;
+  box-shadow: none;
+  color: #f59e0b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ribbon-brand .brand-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ribbon-brand .brand-text {
+  letter-spacing: -0.02em;
+}
+
+.ribbon-brand .brand-highlight {
+  color: #6366f1;
+}
+
+.ribbon-brand .brand-sub {
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(99, 102, 241, 0.15);
+  color: #818cf8;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  padding: 2px 7px;
+  border-radius: 9999px;
+  margin-left: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ribbon-right {
+  display: flex;
+  align-items: center;
+}
+
+.ribbon-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--card-border);
+  color: var(--text-main);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.ribbon-back-btn:hover {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.4);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .top-nav-ribbon {
+    height: 44px;
+  }
+  .ribbon-container {
+    padding: 0 12px;
+  }
+  .ribbon-brand {
+    font-size: 13px;
+  }
+  .ribbon-brand .brand-sub {
+    display: none;
+  }
+  .ribbon-back-btn {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+}
+
 /* Header Navigation Bar */
-header {
+header.app-header {
   z-index: 10;
   padding: 14px 28px;
   display: flex;
@@ -1034,7 +1167,7 @@ button, select, input, .art-node, .swatch, .template-chip, .action-btn {
 
 /* Mobile & Tablet Portrait (<= 768px) */
 @media (max-width: 768px) {
-  header {
+  header.app-header {
     padding: 10px 14px;
     gap: 8px;
     justify-content: space-between;
@@ -1214,7 +1347,7 @@ button, select, input, .art-node, .swatch, .template-chip, .action-btn {
 
 /* Small Smart Phones (<= 480px) */
 @media (max-width: 480px) {
-  header {
+  header.app-header {
     padding: 8px 10px;
   }
 
